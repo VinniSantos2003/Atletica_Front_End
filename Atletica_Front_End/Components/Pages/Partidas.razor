@@ -1,0 +1,38 @@
+﻿@page "/partidas"
+@inject IJSRuntime JS
+<h3>Partidas</h3>
+<div>
+    <input type="text" value="matchIdReference" @oninput="getText" placeholder="BR1_XXXXXXXXXX" />
+    <button @onclick="getMatchIdValue" >Buscar</button>
+</div>
+
+
+@code {
+    private string matchIdReference { get; set; } = string.Empty;
+    private string matchIdValue { get; set; } = string.Empty; 
+
+    private void getText(ChangeEventArgs e)
+    {
+        matchIdReference = e.Value?.ToString() ?? string.Empty;
+    }
+
+    private void getMatchIdValue()
+    {
+        matchIdValue = matchIdReference;
+        Console.WriteLine(matchIdValue);
+    }
+
+    /*
+    //USAR JS RUN TIME OU
+    ElementReference matchIdReference;
+    public string matchIdValue;
+
+    private async Task getMatchIdValue()
+    {
+        matchIdValue = await JS.InvokeAsync<string>("getValue", matchIdReference);
+        Console.WriteLine(matchIdValue);
+        }
+     */
+
+
+}
